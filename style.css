@@ -146,6 +146,20 @@ h1 {
 	margin-right: 20px;
 }
 
+a:link {
+	text-decoration: none;
+	color: blue;
+}
+
+a:visited {
+	color: #373D42;
+}
+
+a:hover {
+	color: #126767;
+}
+
+
 @media screen and (max-width: 678px) {
 	header {
 		width: 100%;
