@@ -94,6 +94,10 @@ h1 {
 	background-color: #123D67;
 }
 
+.section--results {
+	margin-top: 30px;
+}
+
 .results {
 	display: flex;
 	align-items: flex-start;
@@ -111,7 +115,7 @@ h1 {
 	flex-direction: column;
 	padding: 10px;
 	width: 350px;
-	height: 200px;
+	height: 225px;
 	margin: 15px 10px;
 }
 
@@ -127,8 +131,19 @@ h1 {
 	border: 2px solid #0D9D03;
 }
 
-.result img {
-	margin: 10px 0px;
+.result--img {
+	display: block;
+	margin: 10px auto;
+	width: 55%;
+}
+
+.buttons {
+	display: none;
+	justify-content: center;
+}
+
+.buttons--prev {
+	margin-right: 20px;
 }
 
 @media screen and (max-width: 678px) {

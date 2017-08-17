@@ -1,13 +1,21 @@
+const STATE = {
+    data: null
+};
+
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
+const QUERY = {
+    pageToken: '',
+    maxResults: 12,
+    part: 'snippet',
+    key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
+    q: ''
+};
+
 function getDataFromApi(searchTerm, callback) {
-    const query = {
-        maxResults: 15,
-        part: 'snippet',
-        key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
-        q: `${searchTerm}`
-    }
-    $.getJSON(YOUTUBE_SEARCH_URL, query, callback);
+    QUERY['q'] = `${searchTerm}`;
+
+    $.getJSON(YOUTUBE_SEARCH_URL, QUERY, callback);
 }
 
 function renderVideoResult(result) {
@@ -16,7 +24,7 @@ function renderVideoResult(result) {
         <h3>
         <a class="js-video-name" href="https://youtu.be/${result.id.videoId}" target="_blank">${result.snippet.title}</a>
         by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
-        <a class="js-video-thumbnail" href="https://youtu.be/${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.default.url}"></a>
+        <a class="js-video-thumbnail" href="https://youtu.be/${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
         <p>${result.snippet.description}</p>
     </div>
     `;
@@ -28,7 +36,7 @@ function renderChannelResult(result) {
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.title} YouTube Channel</a>
         </h3>
-        <a class="js-video-thumbnail" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank"><img src="${result.snippet.thumbnails.default.url}"></a>
+        <a class="js-video-thumbnail" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
     </div>
     `;
 }
@@ -39,7 +47,7 @@ function renderPlaylistResult(result) {
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank">${result.snippet.title}</a>
         playlist by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
-        <a class="js-video-thumbnail" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank"><img src="${result.snippet.thumbnails.default.url}"></a>
+        <a class="js-video-thumbnail" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
     </div>
     `;
 }
@@ -56,8 +64,22 @@ function displayYouTubeSearchData(data) {
             return renderPlaylistResult(item);
         }
     })
-    $('.js-search-results').html(results);
+    let currentResults = STATE.data;
+    currentResults = results;
+    $('.js-search-results').html(currentResults);
+    $('.buttons').css('display', 'flex');
 }
+
+
+// render next page of results
+$('.buttons--next').click(event => {
+
+});
+
+// render previous page of results
+$('.buttons--prev').click(event => {
+    
+    });
 
 function watchSubmit() {
     $('.js-search-form').submit(event => {
