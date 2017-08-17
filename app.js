@@ -2,7 +2,7 @@ const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 function getDataFromApi(searchTerm, callback) {
     const query = {
-        maxResults: 10,
+        maxResults: 15,
         part: 'snippet',
         key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
         q: `${searchTerm}`
