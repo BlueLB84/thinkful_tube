@@ -12,7 +12,7 @@ function getDataFromApi(searchTerm, callback) {
 
 function renderVideoResult(result) {
     return `
-    <div class="result video-result">
+    <div class="result result--video">
         <h3>
         <a class="js-video-name" href="https://youtu.be/${result.id.videoId}" target="_blank">${result.snippet.title}</a>
         by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
@@ -24,7 +24,7 @@ function renderVideoResult(result) {
 
 function renderChannelResult(result) {
     return `
-    <div class="result channel-result">
+    <div class="result result--channel">
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.title} YouTube Channel</a>
         </h3>
@@ -35,10 +35,10 @@ function renderChannelResult(result) {
 
 function renderPlaylistResult(result) {
     return `
-    <div class="result playlist-result">
+    <div class="result result--playlist">
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank">${result.snippet.title}</a>
-        by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
+        playlist by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
         <a class="js-video-thumbnail" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank"><img src="${result.snippet.thumbnails.default.url}"></a>
     </div>
     `;
