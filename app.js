@@ -1,21 +1,22 @@
 const STATE = {
-    data: null
+    data: null,
+    query: {
+        pageToken: '',
+        maxResults: 12,
+        part: 'snippet',
+        key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
+        q: ''
+    },
+    youtube_search_url: 'https://www.googleapis.com/youtube/v3/search'
 };
 
-const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-const QUERY = {
-    pageToken: '',
-    maxResults: 12,
-    part: 'snippet',
-    key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
-    q: ''
-};
-
-function getDataFromApi(searchTerm, callback) {
-    QUERY['q'] = `${searchTerm}`;
-
-    $.getJSON(YOUTUBE_SEARCH_URL, QUERY, callback);
+function getDataFromApi(searchTerm, pageToken, callback) {
+    STATE.query['q'] = searchTerm;
+    if (pageToken) {
+        STATE.query['pageToken'] = pageToken;
+    }
+    $.getJSON(STATE.youtube_search_url, STATE.query, callback);
 }
 
 function renderVideoResult(result) {
@@ -52,7 +53,32 @@ function renderPlaylistResult(result) {
     `;
 }
 
+function renderButtonPrev() {
+    if (STATE.data.prevPageToken !== undefined) {
+        $('.buttons__prev').show();
+    } else {
+        $('.buttons__prev').hide();
+    }
+}
+
+function renderButtonNext() {
+    if (STATE.data.nextPageToken !== undefined) {
+        $('.buttons__next').show();
+    } else {
+        $('.buttons__next').hide();
+    }
+}
+
+$('.buttons__next').click(event => {
+    getDataFromApi(STATE.query.q, STATE.data.nextPageToken, displayYouTubeSearchData);
+})
+
+$('.buttons__prev').click(event => {
+    getDataFromApi(STATE.query.q, STATE.data.prevPageToken, displayYouTubeSearchData);
+})
+
 function displayYouTubeSearchData(data) {
+    STATE.data = data;
     const results = data.items.map((item, index) => {
         if(item.id.videoId) {
             return renderVideoResult(item);
@@ -64,30 +90,20 @@ function displayYouTubeSearchData(data) {
             return renderPlaylistResult(item);
         }
     })
-    let currentResults = STATE.data;
-    currentResults = results;
-    $('.js-search-results').html(currentResults);
-    $('.buttons').css('display', 'flex');
+
+    $('.js-search-results').html(results);
+    $('.results__total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
+    renderButtonNext();
+    renderButtonPrev();
 }
-
-
-// render next page of results
-$('.buttons--next').click(event => {
-
-});
-
-// render previous page of results
-$('.buttons--prev').click(event => {
-    
-    });
 
 function watchSubmit() {
     $('.js-search-form').submit(event => {
         event.preventDefault();
         const queryTarget = $(event.currentTarget).find('.js-query');
         const query = queryTarget.val();
-        queryTarget.val("");
-        getDataFromApi(query, displayYouTubeSearchData);
+        // queryTarget.val("");
+        getDataFromApi(query, null, displayYouTubeSearchData);
     });
 }
 

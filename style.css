@@ -94,11 +94,16 @@ h1 {
 	background-color: #123D67;
 }
 
-.section--results {
+.results {
 	margin-top: 30px;
 }
 
-.results {
+.results__total {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.results__container {
 	display: flex;
 	align-items: flex-start;
 	flex-direction: row;
@@ -138,11 +143,15 @@ h1 {
 }
 
 .buttons {
-	display: none;
+	display: flex;
 	justify-content: center;
 }
 
-.buttons--prev {
+.buttons__prev, .buttons__next {
+	display: none;
+}
+
+.buttons__prev {
 	margin-right: 20px;
 }
 
