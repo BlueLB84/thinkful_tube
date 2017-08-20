@@ -1,6 +1,6 @@
 # YouSearch YouTube by @BlueLB84 #
 
-Checkout this project on [GitHub Pages](https://bluelb84.github.io/thinkful_tube/ "ThinkfulTube LBV (Flex)")
+Checkout this project on [GitHub Pages!](https://bluelb84.github.io/thinkful_tube/ "ThinkfulTube LBV (Flex)")
 
 ## Overview ##
 The purpose of this project was to gain experience working with an API.  This was also the first project in which I used Flexbox.
