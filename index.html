@@ -14,15 +14,16 @@
     </header>
     <main role="main">
         <section role="form" class="search">        
-            <h3 class="search--title">Search for YouTube videos!</h3>
+            <h3 class="search__title">Search for YouTube videos!</h3>
                 <form action="#" class="js-search-form">
                     <label for="query"></label>
-                    <input type="text" size="30" placeholder="Search YouTube" class="js-query search--input"></input>
-                    <button type="submit" class="search--button">Go!</button>
+                    <input type="text" size="30" placeholder="Search YouTube" class="js-query search__input"><span class="js-search-clear search__clear">x</span></input>
+                    <button type="submit" class="search__button">Go!</button>
                 </form>
         </section>        
         <section role="region" class="results">
-                <p class="results__total"></p>    
+                <p class="js-current-query results__currentQuery"></p>
+                <p class="js-results-total results__total"></p>    
                 <div class="buttons">
                         <button type="submit" class="buttons__prev">< Page</button><button type="submit" class="buttons__next">Page ></button>
                 </div>
