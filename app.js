@@ -92,17 +92,33 @@ function displayYouTubeSearchData(data) {
     })
 
     $('.js-search-results').html(results);
-    $('.results__total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
+    $('.js-current-query').text(`Current Search: "${STATE.query.q}"`);
+    $('.js-results-total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
     renderButtonNext();
     renderButtonPrev();
 }
 
+function handleSearchInputClear() {
+    $('.js-query').on('change paste keyup', function() {
+        if ($('.js-query').val() !== '') {
+            $('.js-search-clear').css('color','grey');
+        } else {
+            $('.js-search-clear').css('color','white');
+        }
+    });
+    $('.search').on('click','.js-search-clear', function() {
+        $('.js-query').val('');
+        $('.js-search-clear').css('color','white');
+        $('.js-query').focus();
+    });
+    }
+
 function watchSubmit() {
+    handleSearchInputClear();
     $('.js-search-form').submit(event => {
         event.preventDefault();
         const queryTarget = $(event.currentTarget).find('.js-query');
         const query = queryTarget.val();
-        // queryTarget.val("");
         getDataFromApi(query, null, displayYouTubeSearchData);
     });
 }
