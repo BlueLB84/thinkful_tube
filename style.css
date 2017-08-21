@@ -104,13 +104,14 @@ h1 {
 
 .search__clear {
 	position: relative;
-	top: 0px;
-	left: -25px;
+	top: 2px;
+	left: -22px;
 	display: none;
 	width: 30px;
 	margin-left: -15px;
 	margin-right: -20px;
 	text-align: center;
+	line-height: 1.2em;
 	color: #B3B3B3;
 	cursor: pointer;
 }
