@@ -64,7 +64,6 @@ h1 {
 }
 
 .search {
-	position: relative;
 	font-size: 1.15rem;
 }
 
@@ -75,11 +74,13 @@ h1 {
 
 .search__input {
 	margin-right: 5px;
-	padding: 5px;
+	padding: 5px 20px 5px 5px;
 	border-radius: 3px;
 }
 
 .search__button {
+	position: relative;
+	right: -25px;
 	padding: 5px;
 	width: 50px;
 	border: 1px solid #373D42;
@@ -95,22 +96,26 @@ h1 {
 	background-color: #123D67;
 }
 
+search__form {
+	position: relative;
+}
+
 .search__clear {
 	position: relative;
-	top: 1px;
-	left: -20px;
-	color: white;
+	top: 0px;
+	left: -25px;
+	color: #B3B3B3;
 	cursor: pointer;
 }
 
-.search__clear-mobile {
+/* .search__clear-mobile {
 	position: relative;
 	top: 2px;
 	left: -48px;
 	font-size: .9em;
 	color: white;
 	cursor: pointer;
-}
+} */
 
 .results {
 	margin-top: 30px;
