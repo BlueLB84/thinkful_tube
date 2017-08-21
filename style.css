@@ -82,6 +82,7 @@ h1 {
 	position: relative;
 	right: -25px;
 	padding: 5px;
+	margin-left: -15px;
 	width: 50px;
 	border: 1px solid #373D42;
 	border-radius: 3px;
@@ -96,26 +97,23 @@ h1 {
 	background-color: #123D67;
 }
 
-search__form {
+.search__form {
 	position: relative;
+	width: 300px;
 }
 
 .search__clear {
 	position: relative;
 	top: 0px;
 	left: -25px;
+	display: none;
+	width: 30px;
+	margin-left: -15px;
+	margin-right: -20px;
+	text-align: center;
 	color: #B3B3B3;
 	cursor: pointer;
 }
-
-/* .search__clear-mobile {
-	position: relative;
-	top: 2px;
-	left: -48px;
-	font-size: .9em;
-	color: white;
-	cursor: pointer;
-} */
 
 .results {
 	margin-top: 30px;

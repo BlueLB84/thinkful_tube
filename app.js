@@ -101,15 +101,15 @@ function displayYouTubeSearchData(data) {
 function handleSearchInputClear() {
     $('.js-query').on('change paste keyup', function() {
         if ($('.js-query').val() !== '') {
-            $('.js-search-clear').show();
-            $('.js-search-clear').css('margin-right','-14px')
+            $('.js-search-clear').css('display','inline-block');
+            $('.search__form').css('margin-right','-5px')
         } else {
-            $('.js-search-clear').hide();
+            $('.js-search-clear').css('display','none');
         }
     });
     $('.search').on('click','.js-search-clear', function() {
         $('.js-query').val('');
-        $('.js-search-clear').hide();
+        $('.js-search-clear').css('display','none');
         $('.js-query').focus();
     });
     }
