@@ -64,6 +64,7 @@ h1 {
 }
 
 .search {
+	width: 100%;
 	margin-top: 30px;
 	font-size: 1.15rem;
 }
@@ -200,11 +201,14 @@ a:hover {
 }
 
 @media screen and (max-width: 678px) {
+	.search {
+		width: 95%;
+		margin: 30px auto;
+		font-size: 1rem;
+	}
+	
 	header {
 		width: 100%;
-	}
-	.search__clear {
-		display: none;
 	}
 	.search__button {
 		margin-left: -20px;
