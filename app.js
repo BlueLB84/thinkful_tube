@@ -25,7 +25,7 @@ function renderVideoResult(result) {
         <h3>
         <a class="js-video-name" href="https://youtu.be/${result.id.videoId}" target="_blank">${result.snippet.title}</a>
         by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
-        <a class="js-video-thumbnail" href="https://youtu.be/${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
+        <a class="js-video-thumbnail" href="https://youtu.be/${result.id.videoId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" alt='${result.snippet.title} video thumbnail image' class="result--img"></a>
         <p>${result.snippet.description}</p>
     </div>
     `;
@@ -37,7 +37,7 @@ function renderChannelResult(result) {
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.title} YouTube Channel</a>
         </h3>
-        <a class="js-video-thumbnail" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
+        <a class="js-video-thumbnail" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" alt='${result.snippet.title} YouTube channel thumbnail image' class="result--img"></a>
     </div>
     `;
 }
@@ -48,7 +48,7 @@ function renderPlaylistResult(result) {
         <h3>
         <a class="js-video-name" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank">${result.snippet.title}</a>
         playlist by&nbsp<a class="js-video-channel-name" href="https://www.youtube.com/channel/${result.snippet.channelId}" target="_blank">${result.snippet.channelTitle}</a></h3>
-        <a class="js-video-thumbnail" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" class="result--img"></a>
+        <a class="js-video-thumbnail" href="https://www.youtube.com/playlist?list=${result.id.playlistId}" target="_blank"><img src="${result.snippet.thumbnails.medium.url}" alt='${result.snippet.title} playlist thumbnail image' class="result--img"></a>
     </div>
     `;
 }
@@ -90,15 +90,22 @@ function displayYouTubeSearchData(data) {
             return renderPlaylistResult(item);
         }
     })
-
-    $('.js-search-results').html(results);
+    $('.js-search-results').empty();
+    $('.js-search-results').append(results);
     $('.js-current-query').text(`Current Search: "${STATE.query.q}"`);
     $('.js-results-total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
     renderButtonNext();
     renderButtonPrev();
+    $('.js-results').prop('hidden', false);
 }
 
 function handleSearchInputClear() {
+    handleSearchInputWatch();
+    handleSearchKeydownClear();
+    handleSearchClickClear();
+}
+
+function handleSearchInputWatch() {
     $('.js-query').on('change paste keyup', function() {
         if ($('.js-query').val() !== '') {
             $('.js-search-clear').css('display','inline-block');
@@ -107,12 +114,32 @@ function handleSearchInputClear() {
             $('.js-search-clear').css('display','none');
         }
     });
-    $('.search').on('click','.js-search-clear', function() {
+    }
+
+function handleSearchKeydownClear() {
+    $('.search').on('keydown','.js-search-clear', function(e) {
+        if(e.which == 13) {
+            event.preventDefault();
+            $('.js-query').val('');
+            $('.js-search-clear').css('display','none');
+            $('.js-query').focus();
+        }
+        if(e.which == 32) {
+            event.preventDefault();
+            $('.js-query').val('');
+            $('.js-search-clear').css('display','none');
+            $('.js-query').focus();
+        }
+    });
+}
+
+function handleSearchClickClear() {
+    $('.search').on('click','.js-search-clear', event => {
         $('.js-query').val('');
         $('.js-search-clear').css('display','none');
         $('.js-query').focus();
     });
-    }
+}
 
 function watchSubmit() {
     handleSearchInputClear();

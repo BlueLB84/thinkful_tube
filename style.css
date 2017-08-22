@@ -64,18 +64,20 @@ h1 {
 }
 
 .search {
+	margin-top: 30px;
 	font-size: 1.15rem;
 }
 
 .search__title {
-	margin: 25px 0px;
 	color: #123D67;
 }
 
 .search__input {
+	margin-top: 10px;
 	margin-right: 5px;
 	padding: 5px 30px 5px 5px;
 	border-radius: 3px;
+	font-size: .75em;
 }
 
 .search__button {
@@ -86,6 +88,7 @@ h1 {
 	width: 50px;
 	border: 1px solid #373D42;
 	border-radius: 3px;
+	font-size: .75em;
 	background-color: #126767;
 	color: white;
 	cursor: pointer;
@@ -112,7 +115,7 @@ h1 {
 	margin-right: -20px;
 	text-align: center;
 	line-height: 1.2em;
-	color: #B3B3B3;
+	color: #595959;
 	cursor: pointer;
 }
 
@@ -122,6 +125,7 @@ h1 {
 
 .results__currentQuery, .results__total {
 	margin-bottom: 10px;
+	font-size: 1.25em;
 	color: #123D67;
 }
 
@@ -168,6 +172,7 @@ h1 {
 .buttons__prev, .buttons__next {
 	display: none;
 	margin-top: 10px;
+	font-size: 1.1em;
 }
 
 .buttons__prev {

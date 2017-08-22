@@ -9,26 +9,26 @@
     <title>ThinkfulTube LBV (Flex)</title>
 </head>
 <body>
-    <header role="header">
+    <header role="heading">
         <h1>YouSearch YouTube</h1>
         
     </header>
     <main role="main">
         <section role="form" class="search">        
-            <h3 class="search__title">Search for YouTube videos!</h3>
+            <!-- <h3 class="search__title">Search for YouTube videos!</h3> -->
                  
                 <form action="#" class="js-search-form">
-                    <label for="query"></label>
+                    <label for="query" class="search__title">Search YouTube</label>
                     <div class="search__form">
-                        <input type="text" size="30" placeholder="Search YouTube" class="js-query search__input">
-                        <span class="js-search-clear search__clear" hidden>x</span></input>
-                    <button type="submit" class="search__button">Go!</button>
+                        <input type="text" size="30" placeholder="What's next?" class="js-query search__input" id="query">
+                        <span type="submit" class="js-search-clear search__clear" tabindex="0" hidden>x</span></input>
+                    <button type="submit" class="js-search__button search__button">Go!</button>
                 </div>
                 </form>
             
         </section>        
-        <section role="region" class="results">
-                <div class= "results__info">
+        <section role="region" class="js-results results" hidden>
+                <div class= "results__info" aria-live="assertive">
                     <p class="js-current-query results__currentQuery"></p>
                     <p class="js-results-total results__total"></p>
                 </div>    
