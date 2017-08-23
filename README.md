@@ -3,7 +3,7 @@
 Checkout this project on [GitHub Pages!](https://bluelb84.github.io/thinkful_tube/ "ThinkfulTube LBV (Flex)")
 
 ## Overview ##
-The purpose of this project was to gain experience working with an API.  This was also the first project in which I used Flexbox.
+The purpose of this project was to gain experience working with an API.  YouSearch YouTube is A11y friendly.  This was also the first project in which I used Flexbox. 
 
 
 ### Technology Stack ###
