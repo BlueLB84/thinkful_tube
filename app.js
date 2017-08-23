@@ -7,7 +7,8 @@ const STATE = {
         key: 'AIzaSyClJ6SxTfNrhYiUsnRPYrwEIhZWkTSN9Y8',
         q: ''
     },
-    youtube_search_url: 'https://www.googleapis.com/youtube/v3/search'
+    youtube_search_url: 'https://www.googleapis.com/youtube/v3/search',
+    page: 1
 };
 
 
@@ -71,10 +72,12 @@ function renderButtonNext() {
 
 $('.buttons__next').click(event => {
     getDataFromApi(STATE.query.q, STATE.data.nextPageToken, displayYouTubeSearchData);
+    STATE.page++;
 })
 
 $('.buttons__prev').click(event => {
     getDataFromApi(STATE.query.q, STATE.data.prevPageToken, displayYouTubeSearchData);
+    STATE.page--;
 })
 
 function displayYouTubeSearchData(data) {
@@ -92,11 +95,16 @@ function displayYouTubeSearchData(data) {
     })
     $('.js-search-results').empty();
     $('.js-search-results').append(results);
-    $('.js-current-query').text(`Current Search: "${STATE.query.q}"`);
-    $('.js-results-total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
+    renderSearchResultsInfo();
     renderButtonNext();
     renderButtonPrev();
     $('.js-results').prop('hidden', false);
+}
+
+function renderSearchResultsInfo() {
+    $('.js-current-query').text(`Current Search: "${STATE.query.q}"`);
+    $('.js-results-total').text(`Total Results: ${STATE.data.pageInfo.totalResults}`);
+    $('.js-results-page').text(`Page: ${STATE.page} / Results per page: 12`);
 }
 
 function handleSearchInputClear() {
